@@ -23,9 +23,8 @@
             <div class="cell" onclick="makeMove(2, 0)"></div>
             <div class="cell" onclick="makeMove(2, 1)"></div>
             <div class="cell" onclick="makeMove(2, 2)"></div>
-
-            
         </div>
+    
             <button onclick="resetGame()">Reset Game</button>
             <div class="player">Player: <span id="player">X</span></div>
 
@@ -70,27 +69,21 @@
                 const [a, b, c] = combination;
                 if (board[a[0]][a[1]] !== "" && board[a[0]][a[1]] === board[b[0]][b[1]] && board[a[0]][a[1]] === board[c[0]][c[1]]) {
                     alert("Player " + currentPlayer + " wins!");
-                    resetGame();
+                    Array.from(document.querySelectorAll(".cell")).forEach(elem=>{
+                        elem.onclick=()=>{}
+                    })
                     return;
                 }
             }
 
             if (board.flat().every(cell => cell !== "")) {
                 alert("It's a tie!");
-                resetGame();
             }
         }
 
         function resetGame() {
             currentPlayer = "X";
-            board = [
-                ["", "", ""],
-                ["", "", ""],
-                ["", "", ""]
-            ];
-            Array.from(document.getElementsByClassName("cell")).forEach(cell => cell.innerText = "");
             location.reload();
-
         }
     </script>
 </body>
