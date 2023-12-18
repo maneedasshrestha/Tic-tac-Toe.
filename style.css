@@ -1,0 +1,91 @@
+body {
+    background-color: #161A30;
+}
+
+.board {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+}
+
+.container {
+    width: 50vmin;
+    padding: 30px 30px;
+    background-color: #B6BBC4;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    align-items: center;
+    justify-content: center;
+}
+
+.container h1 {
+    font-size: 40px;
+    font-weight: 700;
+    color: #161A30;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container info {
+    font-size: 20px;
+    font-weight: 700;
+    color: #161A30;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.board .cell {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #cccccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    transition: 0.4s ease-in-out;
+}
+
+.board .cell:hover {
+    background-color: #f2f2f2;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+button {
+    margin-top: 20px;
+    background-color: #31304D;
+    color: #ffffff;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-left: 15px;
+    transition: 0.4s ease-in-out;
+}
+button:hover {
+    background-color: #161A30;
+}
+
+.container .player {
+    font-size: 20px;
+    font-weight: 700;
+    color: #161A30;
+    text-align: right;
+    margin-bottom: 20px;
+    margin-right: 15px;
+}

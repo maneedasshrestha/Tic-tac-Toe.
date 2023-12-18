@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Tic.Tac.Toe</h1>
+
+
+        <div class="board">
+            <div class="cell" onclick="makeMove(0, 0)"></div>
+            <div class="cell" onclick="makeMove(0, 1)"></div>
+            <div class="cell" onclick="makeMove(0, 2)"></div>
+            <div class="cell" onclick="makeMove(1, 0)"></div>
+            <div class="cell" onclick="makeMove(1, 1)"></div>
+            <div class="cell" onclick="makeMove(1, 2)"></div>
+            <div class="cell" onclick="makeMove(2, 0)"></div>
+            <div class="cell" onclick="makeMove(2, 1)"></div>
+            <div class="cell" onclick="makeMove(2, 2)"></div>
+
+            
+        </div>
+            <button onclick="resetGame()">Reset Game</button>
+            <div class="player">Player: <span id="player">X</span></div>
+
+    </div>
+
+    <script>
+        let currentPlayer = "X";
+        let board = [
+            ["", "", ""],
+            ["", "", ""],
+            ["", "", ""]
+        ];
+
+
+        function makeMove(row, col) {
+            if (board[row][col] === "") {
+                board[row][col] = currentPlayer;
+                document.getElementsByClassName("cell")[row * 3 + col].innerText = currentPlayer;
+                checkWin();
+                currentPlayer = currentPlayer === "X" ? "O" : "X";
+                if (document.getElementById("player").innerText == "X") {
+                    document.getElementById("player").innerText = "O";
+                } else {
+                    document.getElementById("player").innerText = "X";
+                }
+            }
+        }
+
+        function checkWin() {
+            const winningCombinations = [
+                [[0, 0], [0, 1], [0, 2]],
+                [[1, 0], [1, 1], [1, 2]],
+                [[2, 0], [2, 1], [2, 2]],
+                [[0, 0], [1, 0], [2, 0]],
+                [[0, 1], [1, 1], [2, 1]],
+                [[0, 2], [1, 2], [2, 2]],
+                [[0, 0], [1, 1], [2, 2]],
+                [[0, 2], [1, 1], [2, 0]]
+            ];
+
+            for (let combination of winningCombinations) {
+                const [a, b, c] = combination;
+                if (board[a[0]][a[1]] !== "" && board[a[0]][a[1]] === board[b[0]][b[1]] && board[a[0]][a[1]] === board[c[0]][c[1]]) {
+                    alert("Player " + currentPlayer + " wins!");
+                    resetGame();
+                    return;
+                }
+            }
+
+            if (board.flat().every(cell => cell !== "")) {
+                alert("It's a tie!");
+                resetGame();
+            }
+        }
+
+        function resetGame() {
+            currentPlayer = "X";
+            board = [
+                ["", "", ""],
+                ["", "", ""],
+                ["", "", ""]
+            ];
+            Array.from(document.getElementsByClassName("cell")).forEach(cell => cell.innerText = "");
+            location.reload();
+
+        }
+    </script>
+</body>
+
+</html>
